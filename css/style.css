@@ -1,0 +1,272 @@
+/* Jim Clary */
+/* Must include the .css file containing the Google fonts in the html */
+* {
+  box-sizing: border-box;
+}
+/* Define colors */
+html {
+  /* Using CSS Variables for colors. Makes it easy to change colors. */
+  /* Color Palette Generated with Google Color Tool - 
+  https://material.io/resources/color/#!/?view.left=1&view.right=0&primary.color=90CAF9*/
+  --Primary: #90caf9;
+  --P-Light: #c3fdff;
+  --P-Dark: #5d99c6;
+  /* set background colors for links */
+  --link: black;
+  --hover: #ddd;
+  --active: #4caf50;
+  --visited: black;
+  /* text colors */
+  --text: black;
+  --textActive: white;
+  /* shadow color */
+  --shadow: red;
+  /* horizontal line (hr) */
+  --hr: rgba(0, 0, 0, 0.5);
+  /* grid background*/
+  --Background: lightgray;
+}
+
+body {
+  /* default character set */
+  font-family: "Bitter", serif;
+  /* use the ../ to push back up to the parent directory as this is in the css folder */
+  background-image: url("../img/sky-1944448_1920.jpg");
+  /* let the background repeat for high resolution monitors */
+  background-repeat: repeat;
+  /* Limit the width of the body so isn't so spread-out with excessive space between columns*/
+  max-width: 1200px;
+  margin: auto;
+}
+p {
+  font-size: 1em;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a {
+  font-family: "Oswald", sans-serif;
+}
+h1 {
+  font-size: 2.25em;
+}
+h2 {
+  font-size: 1.875em;
+}
+h3 {
+  font-size: 1.5em;
+}
+h4 {
+  font-size: 1.25em;
+}
+h5 {
+  font-size: 1.125em;
+}
+h6 {
+  font-size: 1em;
+}
+
+/* define link colors */
+a:link {
+  color: var(--link);
+  text-decoration: none;
+}
+a:visited {
+  color: var(--visited);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--hover);
+  text-decoration: underline;
+}
+a:active {
+  color: var(--active);
+  text-decoration: underline;
+}
+
+/* The grid container */
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    "header1 header1 header1 header1 header1 header1 header1 header1 header1"
+    "topnav topnav topnav topnav topnav topnav topnav topnav topnav"
+    "header2 header2 header2 header2 header2 header2 header2 header2 header2"
+    "acType description description picture picture picture picture picture rate"
+    "galleryTitle galleryTitle galleryTitle galleryTitle galleryTitle galleryTitle galleryTitle galleryTitle galleryTitle"
+    "gallery gallery gallery gallery gallery gallery gallery gallery gallery"
+    "footer footer footer footer footer footer footer footer footer";
+  grid-row-gap: 0.2rem; /*gap between the columns*/
+  /* did not use grid-row-gap for the main grid, as used padding to have space between the columns */
+  background: var(--Background);
+}
+
+/* Style the headers */
+
+.header1 {
+  grid-area: header1;
+  background: var(--Primary);
+  padding: 1.5em;
+  text-align: center;
+  font-size: 200%;
+}
+.header2 {
+  grid-area: header2;
+  background: var(--Primary);
+  padding: 0;
+  text-align: center;
+}
+
+/* Style the nav */
+
+.topnav {
+  grid-area: topnav;
+  overflow: hidden;
+  background: var(--Primary);
+}
+
+.topnav a {
+  float: left;
+  display: flex;
+  color: var(--link);
+  text-align: center;
+  padding: 1rem 1rem;
+  text-decoration: none;
+  font-size: 110%;
+}
+
+.topnav a:hover {
+  background-color: var(--hover);
+  color: var(--text);
+}
+
+.topnav a.active {
+  background: var(--active);
+  color: var(--textActive);
+}
+
+/* Style the aircraft row */
+
+.acType,
+.description,
+.picture,
+.rate {
+  padding: 0.625em;
+  /* For browsers that do not support gradients */
+  background: var(--Primary);
+  background-image: linear-gradient(var(--P-Dark), var(--P-Light));
+}
+
+/* Style the type column */
+.acType {
+  grid-area: acType;
+  text-align: center;
+}
+
+/* Style the description column */
+.description {
+  grid-area: description;
+}
+
+/* Style the picture column */
+.picture {
+  grid-area: picture;
+}
+.picture img:hover {
+  border: 0.2rem solid var(--hover);
+}
+/* Style the rate column */
+.rate {
+  grid-area: rate;
+}
+
+/* Style the photo gallery title */
+.galleryTitle {
+  grid-area: galleryTitle;
+  background: var(--Primary);
+  padding: 0.2em;
+  margin: 0;
+  text-align: center;
+}
+
+/* Style the photo gallery */
+/* NOTE - Using nested grid*/
+
+/*default is smaller screen - single columns */
+.gallery-container {
+  grid-area: gallery;
+  display: grid;
+  grid-template-areas: "pix1" "pix2" "pix3" "pix4" "pix5" "pix6";
+  grid-column-gap: 2rem;
+  background: var(--Primary);
+  border: 0.2rem solid var(--P-Light);
+}
+div.desc {
+  padding: 1rem;
+  text-align: center;
+  font-size: 200%;
+}
+/* apply wide screen formatting - single row*/
+@media screen and (min-width: 900px) {
+  .gallery-container {
+    grid-area: gallery;
+    display: grid;
+    grid-template-areas: "pix1 pix2 pix3 pix4 pix5 pix6";
+    grid-column-gap: 0.5rem;
+  }
+  div.desc {
+    padding: 0.2rem;
+    font-size: 100%;
+  }
+}
+
+.pix1 img:hover,
+.pix2 img:hover,
+.pix3 img:hover,
+.pix4 img:hover,
+.pix5 img:hover,
+.pix6 img:hover {
+  border: 0.2rem solid var(--hover);
+}
+
+/* Style the footer */
+.footer {
+  
+  grid-area: footer;
+  background: var(--P-Dark);
+  line-height: 50%;
+  text-align: center;
+  font-family: "Bitter", serif;
+  width: 100%;
+  padding: 1.25rem;
+}
+
+/* mobile 1st - default - do not display extra information */
+.footerExtra{
+  display: none;
+}
+/* Show extra footer information when screen is sufficiently wide */
+@media screen and (min-width: 550px) {
+  .footerExtra {
+    display: block;
+  }
+}
+/* HTML5 uses CSS for <hr> (horizontal ruler)  */
+hr {
+  display: block;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: inset;
+  border-width: 0.1rem;
+  border-color: var(--hr);
+}
+
+.responsiveImg {
+  width: 100%;
+  height: auto;
+}
